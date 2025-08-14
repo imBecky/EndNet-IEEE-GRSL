@@ -63,3 +63,39 @@ class EndNet(nn.Module):
         x2_rec = self.x2_dec(h2)
         return logits, x1_rec, x2_rec
 
+def train(x1_train, x2_train, x1_train_full, x2_train_full,
+          x1_test, x2_test, x1_test_full, x2_test_full,
+          y_train, y_test,
+          lr_base=1e-3, beta_reg=1e-3, num_epochs=150,
+          batch_size=64, print_cost=True):
+    """
+    :param x1_train: HSI data(reduced dimension) for VAE
+    :param x2_train: LiDAR data(reduced dimension) for VAE
+    :param x1_train_full: full HSI data for reconstruction loss
+    :param x2_train_full: full LiDAR data for reconstruction loss
+    """
+    x1_train = torch.tensor(x1_train).to(device)
+    x2_train = torch.tensor(x2_train).to(device)
+    x1_train_full = torch.tensor(x1_train_full).to(device)
+    x2_train_full = torch.tensor(x2_train_full).to(device)
+    x1_test = torch.tensor(x1_test).to(device)
+    x2_test = torch.tensor(x2_test).to(device)
+    x1_test_full = torch.tensor(x1_test_full).to(device)
+    x2_test_full = torch.tensor(x2_test_full).to(device)
+    y_train = torch.tensor(y_train).to(device)
+    y_test = torch.tensor(y_test).to(device)
+
+    model = EndNet().to(device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr_base)
+    scheduler = StepLR(optimizer, step_size=30, gamma=0.5)
+    loss_fn = nn.CrossEntropyLoss()
+
+    y_train_cls = torch.argmax(y_train, dim=1)      # one_hot → cls idx
+    y_test_cls = torch.argmax(y_test, dim=1)
+
+    # recording
+    costs, costs_dev = [], []    # what's the meaning of costs_dev
+    train_acc, val_acc = [], []
+
+    seed = 1
+    m = x1_train.size(0)    # what does this mean?
