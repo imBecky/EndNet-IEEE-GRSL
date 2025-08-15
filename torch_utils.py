@@ -25,13 +25,12 @@ def l2_loss(model):
 
 
 def random_mini_batches(x1, x2, x1_full, x2_full, y, batch_size, seed):
-    """模仿 TF 版随机 mini-batch 生成器"""
     np.random.seed(seed)
     m = x1.shape[0]
     permutation = np.random.permutation(m)
     num_batches = int(np.ceil(m / batch_size))
     batches = []
     for k in range(num_batches):
-        idx = permutation[k*batch_size : (k+1)*batch_size]
+        idx = permutation[k*batch_size: (k+1)*batch_size]
         batches.append((x1[idx], x2[idx], x1_full[idx], x2_full[idx], y[idx]))
     return batches

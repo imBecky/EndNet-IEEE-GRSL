@@ -4,6 +4,7 @@
     <list default="true" id="e56a3c71-4fa8-4a51-861f-6b83b05867cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EndNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/EndNet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/torch_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/torch_utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +62,7 @@
       <workItem from="1754735923138" duration="991000" />
       <workItem from="1754814522648" duration="4531000" />
       <workItem from="1755142374104" duration="2928000" />
+      <workItem from="1755235342889" duration="1257000" />
     </task>
     <servers />
   </component>
@@ -79,5 +81,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/torch_utils.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
